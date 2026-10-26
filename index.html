@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Something’s Coming…</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050507;--p:#a855f7;--p2:#7c3aed;--txt:#f3e8ff;--mut:#9a86b8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,sans-serif}
+body{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:24px;overflow-x:hidden;
+background:radial-gradient(circle at 50% 20%,#2a0a4d 0,#0a0612 45%,#050507 80%)}
+.glow{position:fixed;width:420px;height:420px;border-radius:50%;background:var(--p2);filter:blur(120px);opacity:.25;top:-120px;left:50%;transform:translateX(-50%);pointer-events:none;animation:pulse 5s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4;transform:translateX(-50%) scale(1.15)}}
+main{position:relative;z-index:1;width:100%;max-width:640px}
+h1{font-family:Orbitron,sans-serif;font-weight:800;font-size:clamp(1.6rem,6vw,2.6rem);margin:0 0 8px;letter-spacing:.06em;background:linear-gradient(90deg,#fff,var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+p.sub{color:var(--mut);margin:0 0 32px}
+.timer{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.box{background:rgba(168,85,247,.08);border:1px solid rgba(168,85,247,.45);border-radius:14px;padding:16px 4px;box-shadow:0 0 22px rgba(124,58,237,.25)}
+.num{font-family:Orbitron,sans-serif;font-weight:800;font-size:clamp(1.6rem,8vw,2.8rem);color:#fff;text-shadow:0 0 14px var(--p)}
+.lbl{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--mut);margin-top:4px}
+.hidden{display:none!important}
+.btn{font-family:Orbitron,sans-serif;font-weight:800;letter-spacing:.12em;border:0;border-radius:999px;padding:18px 48px;font-size:1.1rem;color:#fff;cursor:pointer;background:linear-gradient(135deg,var(--p2),var(--p));box-shadow:0 0 30px rgba(168,85,247,.7);animation:pop .7s ease-out,beat 2s ease-in-out .7s infinite}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+@keyframes beat{50%{transform:scale(1.07)}}
+.modal{position:fixed;inset:0;z-index:10;background:rgba(0,0,0,.92);display:flex;align-items:center;justify-content:center;padding:calc(16px + env(safe-area-inset-top,0px)) 16px calc(16px + env(safe-area-inset-bottom,0px))}
+.card{width:100%;max-width:820px;background:#0b0710;border:1px solid var(--p2);border-radius:16px;padding:16px;box-shadow:0 0 40px rgba(124,58,237,.5);position:relative}
+.close{position:absolute;top:-14px;right:-6px;width:36px;height:36px;border-radius:50%;border:1px solid var(--p);background:#0b0710;color:#fff;font-size:1.2rem;cursor:pointer}
+video{width:100%;max-height:60vh;border-radius:10px;background:#000;display:block}
+.add{display:flex;flex-direction:column;gap:12px;align-items:stretch;padding:8px 0}
+.add h2{font-family:Orbitron,sans-serif;font-size:1.1rem;margin:0}
+.add input[type=text]{background:#14091f;border:1px solid var(--p2);color:#fff;border-radius:10px;padding:12px;font-size:1rem;width:100%}
+.add label.file,.small{display:inline-block;background:linear-gradient(135deg,var(--p2),var(--p));color:#fff;border:0;border-radius:10px;padding:12px 16px;cursor:pointer;font-weight:600;font-size:.95rem}
+.add input[type=file]{display:none}
+.or{color:var(--mut);font-size:.85rem}
+.small{background:transparent;border:1px solid var(--p2)}
+.tools{display:flex;justify-content:flex-end;margin-top:10px}
+.wish{position:fixed;inset:0;z-index:20;overflow-y:auto;background:radial-gradient(circle at 50% 25%,#2a0a4d 0,#0a0612 50%,#050507 85%);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(24px + env(safe-area-inset-bottom,0px))}
+.wish h2{font-family:Orbitron,sans-serif;font-weight:800;font-size:clamp(1.8rem,8vw,3rem);margin:0 0 20px;background:linear-gradient(90deg,#fff,var(--p));-webkit-background-clip:text;background-clip:text;color:transparent}
+#wl{max-width:560px;width:100%}
+#wl p{font-size:clamp(1rem,4.2vw,1.25rem);line-height:1.6;color:var(--txt);margin:0 0 14px;min-height:1.6em}
+.final{font-family:Orbitron,sans-serif;font-weight:800;font-size:clamp(2rem,10vw,4.2rem);line-height:1.15;margin-top:26px;color:#fff;text-shadow:0 0 20px var(--p),0 0 44px var(--p2);animation:pop .9s ease-out}
+.fl{position:fixed;top:-40px;font-size:1.6rem;pointer-events:none;animation:fall linear forwards;z-index:21}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<main>
+  <section id="waiting">
+    <h1>Something’s coming…</h1>
+    <p class="sub">Unlocks on 27 October. Come back when the timer hits zero.</p>
+    <div class="timer">
+      <div class="box"><div class="num" id="d">00</div><div class="lbl">Days</div></div>
+      <div class="box"><div class="num" id="h">00</div><div class="lbl">Hours</div></div>
+      <div class="box"><div class="num" id="m">00</div><div class="lbl">Mins</div></div>
+      <div class="box"><div class="num" id="s">00</div><div class="lbl">Secs</div></div>
+    </div>
+  </section>
+
+  <section id="ready" class="hidden">
+    <h1>It’s time ✨</h1>
+    <p class="sub">The wait is over.</p>
+    <button class="btn" id="seeBtn">SEE</button>
+  </section>
+</main>
+
+<div class="wish hidden" id="wish">
+  <h2>Happy Birthday! 🎂</h2>
+  <div id="wl"></div>
+  <div class="final hidden" id="fin">This is formality now… give me party! 🎉</div>
+  <button class="small hidden" id="replay" style="margin-top:28px;color:#fff">Watch again</button>
+</div>
+
+<div class="modal hidden" id="modal">
+  <div class="card">
+    <button class="close" id="closeBtn" aria-label="Close">✕</button>
+    <div class="add" id="addBox">
+      <h2>Add your video</h2>
+      <label class="file">Choose a video file<input type="file" id="file" accept="video/*"></label>
+      <span class="or">or paste a direct video link (.mp4, .webm)</span>
+      <input type="text" id="url" placeholder="https://…/video.mp4">
+      <button class="small" id="loadUrl">Play link</button>
+    </div>
+    <div id="playBox" class="hidden">
+      <video id="vid" controls playsinline></video>
+      <div class="tools"><button class="small" id="changeBtn">Change video</button></div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ---- SETTINGS ----
+// Put a direct video link here to play it automatically (leave "" to add a video in the popup).
+var VIDEO_SRC = "/video_2026-10-26_23-33-39.mp4";
+// Reveal date: 27 October 2026, 00:00 (viewer's local time).
+// To open early, change this to a past date, e.g. new Date(2026, 9, 1, 0, 0, 0)
+var TARGET = new Date(2026, 9, 2, 0, 0, 0).getTime();
+// ------------------
+
+var $ = function(id){return document.getElementById(id)};
+var unlockedShown = false;
+function pad(n){return String(n).padStart(2,"0")}
+
+function tick(){
+  var diff = TARGET - Date.now();
+  var forced = location.hash === "#unlock"; // add #unlock to the link to preview early
+  if (diff <= 0 || forced){
+    if (!unlockedShown){
+      unlockedShown = true;
+      $("waiting").classList.add("hidden");
+      $("ready").classList.remove("hidden");
+    }
+    return;
+  }
+  var s = Math.floor(diff/1000);
+  $("d").textContent = pad(Math.floor(s/86400));
+  $("h").textContent = pad(Math.floor(s%86400/3600));
+  $("m").textContent = pad(Math.floor(s%3600/60));
+  $("s").textContent = pad(s%60);
+}
+tick(); setInterval(tick,1000);
+window.addEventListener("hashchange",tick);
+
+function play(src){
+  var v = $("vid");
+  v.src = src;
+  $("addBox").classList.add("hidden");
+  $("playBox").classList.remove("hidden");
+  var p = v.play(); if (p && p.catch) p.catch(function(){});
+}
+$("seeBtn").onclick = function(){
+  $("modal").classList.remove("hidden");
+  if (VIDEO_SRC) play(VIDEO_SRC);
+};
+function closeModal(){
+  $("modal").classList.add("hidden");
+  $("vid").pause();
+}
+$("closeBtn").onclick = closeModal;
+$("modal").addEventListener("click",function(e){ if (e.target === $("modal")) closeModal(); });
+$("file").onchange = function(e){
+  var f = e.target.files[0];
+  if (f) play(URL.createObjectURL(f));
+};
+$("loadUrl").onclick = function(){
+  var u = $("url").value.trim();
+  if (u) play(u);
+};
+$("changeBtn").onclick = function(){
+  $("vid").pause();
+  $("playBox").classList.add("hidden");
+  $("addBox").classList.remove("hidden");
+};
+
+// ---- BIRTHDAY WISHES (edit these lines) ----
+var LINES = [
+  "Wishing you a very happy birthday!",
+  "May this year bring you happiness, health and success in everything you do.",
+  "May all your dreams come true and every day ahead be brighter than the last.",
+  "Stay amazing, keep smiling, and keep shining.",
+  "Here’s to a better future and so many beautiful moments to come."
+];
+// --------------------------------------------
+var runId = 0;
+function sleep(ms){return new Promise(function(r){setTimeout(r,ms)})}
+function confetti(){
+  var em = ["🎉","🎈","✨","💜","🎂","🥳"];
+  for (var i=0;i<40;i++){
+    var s = document.createElement("span");
+    s.className = "fl";
+    s.textContent = em[i%em.length];
+    s.style.left = Math.random()*100+"vw";
+    s.style.animationDuration = (3+Math.random()*4)+"s";
+    s.style.animationDelay = (Math.random()*2)+"s";
+    document.body.appendChild(s);
+    setTimeout(function(el){el.remove()}, 9500, s);
+  }
+}
+async function startWish(){
+  var id = ++runId;
+  closeModal();
+  var box = $("wl");
+  box.innerHTML = "";
+  $("fin").classList.add("hidden");
+  $("replay").classList.add("hidden");
+  $("wish").classList.remove("hidden");
+  await sleep(500);
+  for (var i=0;i<LINES.length;i++){
+    var p = document.createElement("p");
+    box.appendChild(p);
+    for (var c=0;c<LINES[i].length;c++){
+      if (id !== runId) return;
+      p.textContent += LINES[i][c];
+      await sleep(35);
+    }
+    await sleep(500);
+  }
+  if (id !== runId) return;
+  await sleep(600);
+  $("fin").classList.remove("hidden");
+  confetti();
+  $("replay").classList.remove("hidden");
+}
+$("vid").addEventListener("ended", startWish);
+$("replay").onclick = function(){
+  runId++;
+  $("wish").classList.add("hidden");
+  $("modal").classList.remove("hidden");
+  var v = $("vid"); v.currentTime = 0;
+  var p = v.play(); if (p && p.catch) p.catch(function(){});
+};
+</script>
+</body>
+</html>
